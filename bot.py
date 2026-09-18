@@ -31,7 +31,7 @@ async def on_ready():
 
 @bot.slash_command(
     name="deepocean",
-    description="Announce '@everyone join deep ocean' a specified number of times."
+    description="Announce the deep ocean invite a specified number of times."
 )
 async def deep_ocean(
     ctx: discord.ApplicationContext,
@@ -46,7 +46,10 @@ async def deep_ocean(
 ):
     await ctx.defer(ephemeral=True)
 
-    message_text = "@everyone join deep ocean"
+    # "# " makes the text large (Discord heading). @everyone is on its own line
+    # so the mention still pings, then the big text appears below it.
+    message_text = "@everyone\n# join deep ocean\n# https://discord.gg/SX7ZK5ucHJ"
+
     for _ in range(count):
         await ctx.channel.send(message_text)
         await asyncio.sleep(1)  # avoid rate limits
